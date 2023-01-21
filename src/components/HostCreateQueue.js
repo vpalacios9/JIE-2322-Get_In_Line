@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Navbar from "./Navbar";
 import { collection, addDoc } from 'firebase/firestore';
 import { app, database } from "../firebaseConfig";
 
@@ -16,6 +17,8 @@ const HostCreateQueue = () => {
   }
 
     return (
+        <div>
+            <Navbar />
         <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
                 <div className="container card mt-4 p-4">
@@ -72,6 +75,7 @@ const HostCreateQueue = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

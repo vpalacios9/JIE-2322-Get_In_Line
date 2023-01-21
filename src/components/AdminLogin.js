@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import { Component } from 'react';
 
-export default class UserLogin extends Component {
+export default class AdminLogin extends Component {
     render() {
         return (
             <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
                 <div className="container card mt-4 p-4">
                     <div className="text-center">
-                        <h4>Member Sign in</h4>
+                        <h2>Admin Sign in</h2>
                     </div>
                     <div className="card-body">
                     <div class="form-group">

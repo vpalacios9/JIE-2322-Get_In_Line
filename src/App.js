@@ -8,6 +8,7 @@ import {
 
 //Components
 import HostCreateQueue from './components/HostCreateQueue';
+import HomePage from "./components/HomePage";
 import Navbar from './components/Navbar';
 import UserLogin from './components/UserLogin';
 import UserSignUp from './components/UserSignup';
@@ -27,6 +28,7 @@ class App extends Component {
         <Route path="/adminSignup" element={<AdminSignUp />}> </Route>
         <Route path="/adminLogin" element={<AdminLogin />}> </Route>
         <Route path="/createQueue" element={<HostCreateQueue />}> </Route>
+        <Route path="/homePage" element={<HomePage />}> </Route>
         </Routes>
       </BrowserRouter>
 

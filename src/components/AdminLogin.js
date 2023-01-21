@@ -9,6 +9,7 @@ export default class AdminLogin extends Component {
                     <div className="text-center">
                         <h2>Admin Sign in</h2>
                     </div>
+                    <div className="text-left">
                     <div className="card-body">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Email address</label>
@@ -17,6 +18,7 @@ export default class AdminLogin extends Component {
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+                     </div>
                      </div>
                     <div class="col text-center">
                         <button type="submit" class="btn btn-primary">Sign in</button>

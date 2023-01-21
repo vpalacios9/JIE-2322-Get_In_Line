@@ -10,6 +10,7 @@ export default class UserSignUp extends Component {
                         <h4>Sign up to Become a Member</h4>
                     </div>
                     <div className="card-body">
+                    <div className="text-left">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Name</label>
                             <input type="name" class="form-control" id="exampleFormControlInput1"></input>
@@ -34,6 +35,7 @@ export default class UserSignUp extends Component {
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
                      </div>
+                     </div> 
                      <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1"></input>
                         <label class="form-check-label" for="exampleCheck1">I agree and read Terms and Conditions</label>

@@ -13,7 +13,7 @@ export default class HomePage extends Component {
           
             <img src={"https://miro.medium.com/max/1200/1*v5pZW_TaxU-84hn2vfSySg.jpeg"} alt="Image" style={{ width: '100%' }} />
             <h1 className="text-center" style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)',  fontSize:100, color:"white"}}>Welcome to GetInLine</h1>
-            <h4 className="text-center" style={{ position: 'absolute', top: '70%', left: '50%', transform: 'translate(-50%, -50%)',  fontSize:60, color:"white"}}>Eliminate Lines, Optimize Your Time</h4>
+            <h4 className="text-center" style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)',  fontSize:60, color:"white"}}>Eliminate Lines, Optimize Your Time</h4>
             
           
         </Row>

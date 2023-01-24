@@ -72,7 +72,7 @@ const HostCreateQueue = () => {
                             </div>
                         </div>
                     </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>

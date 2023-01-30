@@ -23,4 +23,4 @@ This project is a webapage to solve the issue of waiting so long in line. People
 - Fixed backend issues we were facing with firebase authentication and storing data into firebase 
 
 ### Known Issues 
--Host create queue page is not showing up 
+- Host create queue page is not showing up 

@@ -1,47 +1,87 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
+import Navbar from "./Navbar";
+import { collection, addDoc } from 'firebase/firestore';
+import { app, database, auth } from "../firebaseConfig";
+import { useNavigate } from 'react-router-dom';
 
-export default class HostCreateQueue extends Component {
-    render() {
-        return (
-            <div className="container bg-light  mt-4 p-4">
-                <div className= "row" >
-                    <div className="container card mt-4 p-4">
-                        <div className="text-center">
-                            <h2>Create New Queue</h2>
+const HostCreateQueue = () => {
+  const user = auth.currentUser;
+  const navigate = useNavigate();
+  if (!user) navigate("/login");
+  const [queueData, setQueueData] = useState({});
+  const collectionRef = collection(database, 'queue');
+  const handleCreateQueue = (data) => {
+    addDoc(collectionRef, data)
+    .then(() =>  {
+      alert('Data added');
+    })
+    .catch((err) => {
+      alert(err.message);
+    })
+  }
+
+    return (
+        <div>
+            <Navbar />
+        <div className="container bg-light  mt-4 p-4">
+            <div className= "row" >
+                <div className="container card mt-4 p-4">
+                    <div className="text-center">
+                        <h2>Create New Queue</h2>
+                    </div>
+                    <div className="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                            </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                onChange={(e) => setQueueData({...queueData, name: e.target.value})}
+                            />
                         </div>
-                        <div className="card-body">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Select Location</span>
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Select Location</span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                            <input
+                                type="text"
+                                class="form-control"
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                onChange={(e) => setQueueData({...queueData, loc: e.target.value})}
+                            />
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Estimated Waiting Time per Person</span>
-                                </div>
-                                <input type="number" class="form-control" min="0" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Estimated Waiting Time per Person</span>
                             </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div  class="text-center">
-                                        <button type="submit" class="btn btn-primary mr-5">Create Queue</button>
-                                        <button type="submit" class="btn btn-danger mr-5">Delete Queue</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <input
+                                type="number"
+                                class="form-control"
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                                onChange={(e) => setQueueData({...queueData, etw: parseInt(e.target.value)})}
+                            />
                         </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div  class="text-center">
+                                    <button disabled={!(queueData.name && queueData.loc && queueData.etw)} type="submit" class="btn btn-primary mr-5" onClick={() => handleCreateQueue(queueData)}>Create Queue</button>
+                                    <button type="submit" class="btn btn-danger mr-5">Delete Queue</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    </div> 
                 </div>
             </div>
-        )
-    }
+        </div>
+        </div>
+    )
 }
+
+export default HostCreateQueue;

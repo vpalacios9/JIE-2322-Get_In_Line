@@ -5,5 +5,9 @@ This project is a webapage to solve the issue of waiting so long in line. People
 # Release Notes
 ## Release 0.1.0 
 ### Features
-- Yes 
+- Created pages that the customers of the webpage will see when using the service 
+  -Admin Signup
+    -Page that the admin will see when they want to create an account on GetInLine
+  -Home Page
+    -what the customers sees when they first open the webpage
 

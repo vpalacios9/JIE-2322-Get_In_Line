@@ -5,5 +5,5 @@ This project is a webapage to solve the issue of waiting so long in line. People
 # Release Notes
 ## Release 0.1.0 
 ### Features
-* Bullet list
- *  yes
+*Created different pages that the customers can use when they are using the webpage
+  *Home Page

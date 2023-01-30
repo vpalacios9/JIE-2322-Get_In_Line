@@ -6,7 +6,4 @@ This project is a webapage to solve the issue of waiting so long in line. People
 ## Release 0.1.0 
 ### Features
 * Bullet list
-              ** Nested bullet
-                  * Sub-nested bullet etc
-          * Bullet list item 2
-
+ *yes

@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import Navbar from "./Navbar";
 import { collection, addDoc } from 'firebase/firestore';
-import { app, database } from "../firebaseConfig";
+import { app, database, auth } from "../firebaseConfig";
+import { useNavigate } from 'react-router-dom';
 
 const HostCreateQueue = () => {
+  const user = auth.currentUser;
+  const navigate = useNavigate();
+  if (!user) navigate("/login");
   const [queueData, setQueueData] = useState({});
   const collectionRef = collection(database, 'queue');
   const handleCreateQueue = (data) => {

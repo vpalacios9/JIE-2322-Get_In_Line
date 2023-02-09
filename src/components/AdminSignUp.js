@@ -35,13 +35,13 @@ const AdminSignUp  = () => {
         if (!agreed) {
             throw new Error("Please read and agree with Terms and Condition to continue creating your account")
         }
+
         createUserWithEmailAndPassword(auth, user.email, user.password)
-            .then(() => {
-                signInWithEmailAndPassword(auth, user.email, user.password)
-                    .then(() => {
-                        navigate("/createQueue")
-                    });
-            });
+        .then((userCredential) => {
+            createUser(user, userCredential.user.uid);
+            navigate("/createQueue");
+        });
+
     }
 
     const onChange = (key, value) => {

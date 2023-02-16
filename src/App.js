@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import UserSignUp from './components/UserSignup';
 import AdminSignUp from './components/AdminSignUp';
 import Login from './components/Login';
+import UserAddIndo from './components/UserAddInfo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/adminSignup" element={<AdminSignUp />}> </Route>
             <Route path="/login" element={<Login />}> </Route>
             <Route path="/createQueue" element={<HostCreateQueue />}> </Route>
+            <Route path="/useraddinfo" element={<UserAddIndo />}> </Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -1,48 +1,60 @@
 import { Component } from 'react';
-import { useNavigate, useSubmit } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState} from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth';
 import { auth, database } from '../firebaseConfig';
 
 import { setDoc, doc } from '@firebase/firestore';
 const UserAddInfo  = () => {
-    const user = auth.currentUser;
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        phone: ''
+    });
     const navigate = useNavigate();
     
-    if (!user) navigate("/login");
+    if (!auth.currentUser) navigate("/login");
 
+    const [error, setError] = useState(null);
 
-   
+    const addUser = (user, uid) => {
+        setDoc(
+            doc(database, "queue", uid), {
+        "name": user.name,
+        "email": user.email,
+        "phone": user.phone
+    })
+        .then(() => {
+            console.log("User added to Firestore");
+        });
+    }
 
+    const onSubmit = (event) => {
+        event.preventDefault();
 
-    const submit = (user) => {
         if (!user.email || user.email === ""
             || !user.name || user.name === ""
-            || !user.location
-            || !user.password || user.password === ""
+            || !user.phone || user.phone === ""
         ) {
-
-            throw new Error("More than one fields are empty");
+            setError("One or more fields isn't completed");
+            return;
         }
-        
+        if (user.phone.toString().length !== 10) {
+            setError("Phone number can only be 10 digits long");
+            return;
+        }
 
-        createUserWithEmailAndPassword(auth, user.email, user.password)
-            .then(() => {
-                signInWithEmailAndPassword(auth, user.email, user.password)
-                    .then(() => {
-                        navigate("/createQueue")
-                    });
-            });
-
+        const updatedUser = { ...user };
+        setUser(updatedUser);
+        addUser(updatedUser, auth.currentUser.uid);
+        navigate("/createQueue");
     }
-    
 
     const onChange = (key, value) => {
-        console.log(value)
-        let tmp = {...user};
-        tmp[key] = value;
-        
+        const updatedUser = { ...user };
+        updatedUser[key] = value;
+        setUser(updatedUser);
     }
+
     return (
         
             
@@ -54,32 +66,28 @@ const UserAddInfo  = () => {
                         <h2>You have selected to GetInLine at: </h2>
                     </div>
                     <div className="card-body">
-                    <div className="text-left">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Name</label>
-                            <input type="name" class="form-control" id="exampleFormControlInput1" placeholder='John Doe' onChange={(e) => onChange("name", e.target.value)}></input>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" 
-                            onChange={(e) => onChange("email", e.target.value)}
-                        />
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPhoneNumber">Phone Number</label>
-                            <input type="number" class="form-control" id="exampleInputPhoneNumber" placeholder="Phone Number"
-                            onChange={(e) => onChange("phone", e.target.value)}
-                            />
-                        </div>
-                        
-                        <div class="col text-center">
-                            <button type="submit" class="btn btn-secondary" onClick={() => navigate("/homepage")}>Back</button>
-                            {'               '}
-                            <button  class="btn btn-primary" onClick={() => navigate("/homepage")}>GetInLine</button>
-                        </div>
-                        
-                    </div>
+                    <form onSubmit={onSubmit}>
+                            <div className="text-left">
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlInput1">Name</label>
+                                    <input type="name" className="form-control" id="exampleFormControlInput1" placeholder='John Doe' onChange={(e) => onChange("name", e.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlInput1">Email address</label>
+                                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" onChange={(e) => onChange("email", e.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputPhoneNumber">Phone Number</label>
+                                    <input type="number" className="form-control" id="exampleInputPhoneNumber" placeholder="Phone Number" onChange={(e) => onChange("phone", e.target.value)} />
+                                </div>
+                                <div className="col text-center">
+                                    <button  className="btn btn-secondary" onClick={() => navigate("/homepage")}>Back</button>
+                                    {'               '}
+                                    <button className="btn btn-primary" type="submit">GetInLine</button>
+                                </div>
+                                {error && <p className="text-danger">{error}</p>}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

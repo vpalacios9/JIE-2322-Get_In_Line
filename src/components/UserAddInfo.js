@@ -8,7 +8,9 @@ const UserAddInfo  = () => {
     const [user, setUser] = useState({
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        services: []
+
     });
     const navigate = useNavigate();
     
@@ -18,10 +20,11 @@ const UserAddInfo  = () => {
 
     const addUser = (user, uid) => {
         setDoc(
-            doc(database, "queue", uid), {
+            doc(database, "users", uid), {
         "name": user.name,
         "email": user.email,
-        "phone": user.phone
+        "phone": user.phone,
+        "services": user.services
     })
         .then(() => {
             console.log("User added to Firestore");
@@ -44,6 +47,8 @@ const UserAddInfo  = () => {
         }
 
         const updatedUser = { ...user };
+        const randomId = Math.floor(Math.random() * 1000); 
+        updatedUser.services.push(randomId);
         setUser(updatedUser);
         addUser(updatedUser, auth.currentUser.uid);
         navigate("/createQueue");

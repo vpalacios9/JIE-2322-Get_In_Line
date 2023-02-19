@@ -3,13 +3,12 @@ import { useNavigate, useSubmit } from 'react-router-dom';
 import React, { useState} from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth';
 import { auth, database } from '../firebaseConfig';
-import ReactLoading from 'react-loading';
+
 import { setDoc, doc } from '@firebase/firestore';
 const UserAddInfo  = () => {
     const user = auth.currentUser;
     const navigate = useNavigate();
-    const [loading, setLoading]= useState(false);
-    const [error, setError]= useState("");
+    
     if (!user) navigate("/login");
 
 
@@ -17,22 +16,16 @@ const UserAddInfo  = () => {
 
 
     const submit = (user) => {
-        
-        if(user === null){
-            setError("More than one fields are empty");
-            return;
-        }
-
         if (!user.email || user.email === ""
             || !user.name || user.name === ""
-            || !user.phone || user.phone === "" 
+            || !user.location
+            || !user.password || user.password === ""
         ) {
 
-            setError("More than one fields are empty");
-
+            throw new Error("More than one fields are empty");
         }
-        console.log(loading);
-        setLoading(true);
+        
+
         createUserWithEmailAndPassword(auth, user.email, user.password)
             .then(() => {
                 signInWithEmailAndPassword(auth, user.email, user.password)
@@ -40,6 +33,7 @@ const UserAddInfo  = () => {
                         navigate("/createQueue")
                     });
             });
+
     }
     
 
@@ -50,8 +44,8 @@ const UserAddInfo  = () => {
         
     }
     return (
-        <div>
-            {!loading ? (
+        
+            
         <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
                 <div className="container card mt-4 p-4">
@@ -82,19 +76,16 @@ const UserAddInfo  = () => {
                         <div class="col text-center">
                             <button type="submit" class="btn btn-secondary" onClick={() => navigate("/homepage")}>Back</button>
                             {'               '}
-                            <button  class="btn btn-primary" onClick={() => submit(user)}>GetInLine</button>
+                            <button  class="btn btn-primary" onClick={() => navigate("/homepage")}>GetInLine</button>
                         </div>
-                        <p>{error}</p>
+                        
                     </div>
                     </div>
                 </div>
             </div>
         </div>
-            ):(
-                <ReactLoading type="spin" color="#000" width={40} />
-            )
-    }
-         </div>
+        
+         
     )
 }
 

@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import { auth, database } from '../firebaseConfig';
 
-import { setDoc, doc } from '@firebase/firestore';
+import { setDoc, doc , collection, query, onSnapshot} from '@firebase/firestore';
 const UserAddInfo  = () => {
     const [user, setUser] = useState({
         name: '',
@@ -17,6 +17,8 @@ const UserAddInfo  = () => {
     if (!auth.currentUser) navigate("/login");
 
     const [error, setError] = useState(null);
+    const [queueData, setQueueData] = useState([]); 
+
 
     const addUser = (user, uid) => {
         setDoc(
@@ -24,41 +26,58 @@ const UserAddInfo  = () => {
         "name": user.name,
         "email": user.email,
         "phone": user.phone,
-        "services": user.services
+        "services": queueData
     })
         .then(() => {
             console.log("User added to Firestore");
         });
     }
 
-    const onSubmit = (event) => {
-        event.preventDefault();
+    const onSubmit = async (event) => {
+  event.preventDefault();
 
-        if (!user.email || user.email === ""
-            || !user.name || user.name === ""
-            || !user.phone || user.phone === ""
-        ) {
-            setError("One or more fields isn't completed");
-            return;
-        }
-        if (user.phone.toString().length !== 10) {
-            setError("Phone number can only be 10 digits long");
-            return;
-        }
+  if (
+    !user.email ||
+    user.email === "" ||
+    !user.name ||
+    user.name === "" ||
+    !user.phone ||
+    user.phone === ""
+  ) {
+    setError("One or more fields isn't completed");
+    return;
+  }
+  if (user.phone.toString().length !== 10) {
+    setError("Phone number can only be 10 digits long");
+    return;
+  }
 
-        const updatedUser = { ...user };
-        const randomId = Math.floor(Math.random() * 1000); 
-        updatedUser.services.push(randomId);
-        setUser(updatedUser);
-        addUser(updatedUser, auth.currentUser.uid);
-        navigate("/createQueue");
-    }
+  const updatedUser = { ...user };
+  updatedUser.services.push(queueData);
+  setUser(updatedUser);
+  await addUser(updatedUser, auth.currentUser.uid); // use await to wait for the addUser function to complete
+  navigate("/createQueue");
+};
 
     const onChange = (key, value) => {
         const updatedUser = { ...user };
         updatedUser[key] = value;
         setUser(updatedUser);
     }
+    useEffect(() => {
+        const q1 = query(collection(database, 'queue'));
+      
+        const unsubscribe = onSnapshot(q1, (snapshot) => {
+          const queueData = snapshot.docs.map(doc => doc.id);
+          setQueueData(queueData);
+        });
+      
+        return () => {
+          unsubscribe();
+        };
+      }, []);
+      
+    
 
     return (
         

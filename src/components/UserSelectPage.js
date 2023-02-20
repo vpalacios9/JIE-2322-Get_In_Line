@@ -1,60 +1,53 @@
-import React, {useState} from 'react';
-import Navbar from "./Navbar";
-import { collection, addDoc } from 'firebase/firestore';
-import { app, database, auth } from "../firebaseConfig";
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { auth, database } from '../firebaseConfig';
+import { collection, getDocs, doc, updateDoc, query, FieldValue } from '@firebase/firestore';
 
-const HostCreateQueue = () => {
-  const user = auth.currentUser;
-  const navigate = useNavigate();
-  if (!user) navigate("/login");
-  const [queueData, setQueueData] = useState({
-    users: []
-  });
-  const collectionRef = collection(database, 'queue');
-  const handleCreateQueue = (data) => {
-    addDoc(collectionRef, data)
-    .then(() =>  {
-      alert('Data added');
-    })
-    .catch((err) => {
-      alert(err.message);
-    })
-  }
+const UserSelectPage = () => {
+    const [queueData, setQueueData] = useState({});
+    const [allQueues, setAllQueues] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const q = query(collection(database, "queue"));
+      getDocs(q).then(docs => {
+        const queues = []
+        let queue;
+        docs.forEach((doc) => {
+          queue = {...doc.data(), id: doc.id}
+          queues.push(queue);
+        });
+        setAllQueues([...queues]);
+      });
+    }, []);
+
+    const addQueue = async (id) => {
+      const q = doc(database, "users", auth.currentUser.uid);
+      await updateDoc(q, {
+        queues: FieldValue.arrayUnion(id)
+      }).then(() => {
+        navigate("/WaitTime")
+    });
+    }
 
     return (
-        <div>
-            <Navbar />
         <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
                 <div className="container card mt-4 p-4">
                     <div className="text-center">
-                        <h2>Create New Queue</h2>
+                        <h4>Select an event</h4>
                     </div>
                     <div className="card-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                            </div>
-                            <input
-                                type="text"
-                                class="form-control"
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                                onChange={(e) => setQueueData({...queueData, name: e.target.value})}
-                            />
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">State</span>
-                            </div>
-                            <select
-                                type="text"
-                                class="form-control"
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                                onChange={(e) => setQueueData({...queueData, state: e.target.value})}
-                            >
+                        <div className="text-left">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">State</label>
+                                <select
+                                  class="form-control"
+                                  id="exampleFormControlSelect1"
+                                  onChange={(e) => {
+                                    setQueueData({...queueData, state: e.target.value})
+                                  }}
+                                >
                                     <option value={null} selected disabled hidden>Select an Option</option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
@@ -108,50 +101,58 @@ const HostCreateQueue = () => {
                                     <option value="WI">Wisconsin</option>
                                     <option value="WY">Wyoming</option>
                                 </select>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">City</span>
                             </div>
-                            <input
-                                type="text"
-                                class="form-control"
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                                onChange={(e) => setQueueData({...queueData, city: e.target.value})}
-                            />
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Estimated Waiting Time per Person</span>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">City</label>
+                                <input
+                                  class="form-control"
+                                  id="exampleFormControlSelect2"
+                                  onChange={(e) => {
+                                    setQueueData({...queueData, city: e.target.value})
+                                  }}
+                                />
                             </div>
-                            <input
-                                type="number"
+
+                            <div class="form-group">
+                              <label for="exampleFormControlSelect1">Event</label>
+                              <select
                                 class="form-control"
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                                onChange={(e) => setQueueData({...queueData, etw: parseInt(e.target.value)})}
-                                
-                            />
-                        </div>
-
-                        
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div  class="text-center">
-                                    <button disabled={!(queueData.name && queueData.state && queueData.city && queueData.etw)} type="submit" class="btn btn-primary mr-5" onClick={() => handleCreateQueue(queueData)}>Create Queue</button>
-                                </div>
+                                id="exampleFormControlSelect3"
+                                onChange={(e) => {
+                                  setQueueData({...queueData, id: e.target.value})
+                                }}
+                              >
+                                {
+                                  (queueData.state !== null && queueData.state !== "" && queueData.city !== null && queueData.city !== "") ? (
+                                    allQueues.filter(queue => queue.state === queueData.state && queue.city.includes(queueData.city)).map((queue) => (
+                                      <option value={queue.id}>{queue.name}</option>
+                                    ))
+                                  ) : (queueData.state !== null && queueData.state !== "") ? (
+                                    allQueues.filter(queue => queue.state === queueData.state).map((queue) => (
+                                      <option value={queue.id}>{queue.name}</option>
+                                    ))
+                                  ) : (queueData.city !== null && queueData.city !== "") ? (
+                                    allQueues.filter(queue => queue.city.includes(queueData.city)).map((queue) => (
+                                      <option value={queue.id}>{queue.name}</option>
+                                    ))
+                                  ) : (
+                                    allQueues.map((queue) => (
+                                      <option value={queue.id}>{queue.name}</option>
+                                    ))
+                                  )
+                                }
+                              </select>
+                            </div>
+                            <div class="col text-center">
+                              <button type="submit" class="btn btn-primary" onClick={() => addQueue(queueData.id)}>GetInLine</button>
                             </div>
                         </div>
                     </div>
-                    </div> 
                 </div>
             </div>
-        </div>
         </div>
     )
 }
 
-export default HostCreateQueue;
+export default UserSelectPage;

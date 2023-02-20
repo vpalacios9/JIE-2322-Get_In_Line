@@ -1,7 +1,5 @@
-import { Component } from 'react';
 
-export default class Navbar extends Component {
-    render() {
+export default function Navbar(props){
         return (
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">Get In Line</a>
@@ -19,5 +17,4 @@ export default class Navbar extends Component {
             </div>
             </nav>
         )
-    }
 }

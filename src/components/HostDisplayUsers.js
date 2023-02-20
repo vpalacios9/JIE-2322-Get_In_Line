@@ -43,20 +43,26 @@ const HostDisplayUsers = () => {
             <div className= "row" >
                 <div className="container card mt-4 p-4">
                     <div className="text-center">
-                        <h2>Temp Hold</h2>
+                        <h2>Super Cuts</h2>
                     </div>
+                      <div class="card-body">
+                      <div>
+                          {queueData.map((data) => (
+                          <div key={data.id}>
+                          <p>{data.name}</p>
+                          {/* display data */}
+                          </div>
+                          ))}
+                      </div>
+                      <button type="button" class="btn btn-secondary mr-5">Back</button>
+                      <button type="button" class="btn btn-primary mr-3">Add User</button>
+                      <button type="button" class="btn btn-danger mr-3">Remove User</button>
+                      </div>
                 </div>
             </div>
             </div>
 
-        <div>
-          {queueData.map((data) => (
-            <div key={data.id}>
-                <p>{data.name}</p>
-              {/* display data */}
-            </div>
-          ))}
-        </div>
+        
         </div>
       );
     };

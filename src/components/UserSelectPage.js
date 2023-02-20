@@ -1,10 +1,14 @@
 import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, database } from '../firebaseConfig';
-import { collection, getDocs, doc, updateDoc, query, FieldValue } from '@firebase/firestore';
+import { collection, getDocs, doc, updateDoc, query, arrayUnion } from '@firebase/firestore';
 
 const UserSelectPage = () => {
-    const [queueData, setQueueData] = useState({});
+    const [queueData, setQueueData] = useState({
+      id: "",
+      state: "",
+      city: ""
+    });
     const [allQueues, setAllQueues] = useState([]);
     const navigate = useNavigate();
 
@@ -22,9 +26,12 @@ const UserSelectPage = () => {
     }, []);
 
     const addQueue = async (id) => {
+      if (id === undefined || id === null || id === "") {
+        throw new Error("ID is not definted");
+      }
       const q = doc(database, "users", auth.currentUser.uid);
       await updateDoc(q, {
-        queues: FieldValue.arrayUnion(id)
+        queues: arrayUnion(id)
       }).then(() => {
         navigate("/WaitTime")
     });
@@ -123,6 +130,7 @@ const UserSelectPage = () => {
                                   setQueueData({...queueData, id: e.target.value})
                                 }}
                               >
+                                <option value={null} selected disabled hidden>Select an Option</option>
                                 {
                                   (queueData.state !== null && queueData.state !== "" && queueData.city !== null && queueData.city !== "") ? (
                                     allQueues.filter(queue => queue.state === queueData.state && queue.city.includes(queueData.city)).map((queue) => (

@@ -19,7 +19,7 @@ const HostDisplayUsers = () => {
             queueData.push({ id: doc.id, ...doc.data() });
           });
           setQueueData(queueData);
-          console.log(queueData);
+         
         });
 
         

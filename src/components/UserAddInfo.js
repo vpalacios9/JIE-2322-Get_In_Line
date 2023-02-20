@@ -55,7 +55,7 @@ const UserAddInfo  = () => {
   const updatedUser = { ...user };
   updatedUser.services.push(queueData);
   setUser(updatedUser);
-  await addUser(updatedUser, auth.currentUser.uid); // use await to wait for the addUser function to complete
+  await addUser(updatedUser, auth.currentUser.uid); 
   navigate("/createQueue");
 };
 

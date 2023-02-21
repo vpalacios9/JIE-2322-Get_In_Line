@@ -29,8 +29,8 @@ const UserSelectPage = () => {
       if (id === undefined || id === null || id === "") {
         throw new Error("ID is not definted");
       }
-      const q = doc(database, "users", auth.currentUser.uid);
-      await updateDoc(q, {
+      const path = doc(database, "users", auth.currentUser.uid);
+      await updateDoc(path, {
         queues: arrayUnion(id)
       }).then(() => {
         navigate("/WaitTime")

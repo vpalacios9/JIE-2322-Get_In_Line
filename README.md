@@ -13,7 +13,7 @@ This project is a webapage to solve the issue of waiting so long in line. People
 - The way we were adding users and hosts to the firebase before was very unorganized and the firebase was not properly displaying the lines that the users had joined nor the users had in their queues. To fix this, we decided to creeate an array field in additon to information such as name and email for the users and the hosts. Through this method, whenever the user queues themselves to a line, the id of the host queue is added to the "queues" array for the users collection, and the id of the user is added to the "users" field for the queue collection. Now the firebase is properly adding the data for both user and host. 
 
 ### Known Issues 
-- Host create queue page is not showing up 
+- Only known issue at the current moment is that pages are not properly linked together but besides that functionality works properly, and frontend and backend works well together.  
 ## Release 0.1.0 
 ### Features
 - Created different pages that the customers can use when they are using the webpage which are easy to interact with

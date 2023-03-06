@@ -4,7 +4,8 @@ import { auth, database } from '../firebaseConfig';
 import { collection, getDocs, doc, updateDoc, query, arrayUnion } from '@firebase/firestore';
 
 const UserSelectPage = () => {
-    const [queueData, setQueueData] = useState({
+    
+  const [queueData, setQueueData] = useState({
       id: "",
       state: "",
       city: ""
@@ -13,6 +14,11 @@ const UserSelectPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+      //Check if user is logged in and not a host
+      if (!auth.currentUser || auth.currentUser.host) {
+        navigate('/login'); // Redirect to login if not logged in or is a host
+        return;
+      }
       const q = query(collection(database, "queue"));
       getDocs(q).then(docs => {
         const queues = []
@@ -27,14 +33,21 @@ const UserSelectPage = () => {
 
     const addQueue = async (id) => {
       if (id === undefined || id === null || id === "") {
-        throw new Error("ID is not definted");
+        throw new Error("ID is not defined");
       }
-      const q = doc(database, "users", auth.currentUser.uid);
-      await updateDoc(q, {
+      // Update the queue document with the user ID
+      const queueDocRef = doc(database, "queue", id);
+      await updateDoc(queueDocRef, {
+        users: arrayUnion(auth.currentUser.uid)
+      });
+    
+      // Update the user document with the queue ID
+      const userDocRef = doc(database, "users", auth.currentUser.uid);
+      await updateDoc(userDocRef, {
         queues: arrayUnion(id)
-      }).then(() => {
-        navigate("/WaitTime")
-    });
+      });
+    
+      navigate("/WaitTime");
     }
 
     return (

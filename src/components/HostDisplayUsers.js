@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const HostDisplayUsers = () => {
     // If User is Logged In
+    //TODO: ONLY AVAILABLE FOR HOST USERS
     const user = auth.currentUser;
     const navigate = useNavigate();
     const [queueData, setQueueData] = useState([]); 

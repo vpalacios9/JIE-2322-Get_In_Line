@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, database } from '../firebaseConfig';
 import { collection, getDocs, doc, updateDoc, query, arrayUnion } from '@firebase/firestore';
+import Navbar from './Navbar';
 
 const UserSelectPage = () => {
     
@@ -14,7 +15,7 @@ const UserSelectPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      //Check if user is logged in and not a host
+      // Check if user is logged in and not a host
       if (!auth.currentUser || auth.currentUser.host) {
         navigate('/login'); // Redirect to login if not logged in or is a host
         return;
@@ -51,6 +52,8 @@ const UserSelectPage = () => {
     }
 
     return (
+        <div>
+          <Navbar />
         <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
                 <div className="container card mt-4 p-4">
@@ -172,6 +175,7 @@ const UserSelectPage = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

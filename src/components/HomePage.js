@@ -9,7 +9,10 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     return (
+        <div>
+            <Navbar />
         <div className="container bg-light  mt-2 p-2">
+
             <div className="row">
                 <div className="container card mt-4 p-4">
                 <h1>Welcome to GetInLine</h1>
@@ -37,6 +40,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

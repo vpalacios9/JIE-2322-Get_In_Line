@@ -22,6 +22,7 @@ const HostCreateQueue = () => {
     .catch((err) => {
       alert(err.message);
     })
+    navigate("/HostDisplayUsers"); //TODO: TAKE THEM TO MY QUEUES. RIGHT NOW IT TAKES THEM TO THE ONE QUEUE DISPLAY
   }
 
     return (

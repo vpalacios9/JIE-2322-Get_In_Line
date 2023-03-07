@@ -5,10 +5,12 @@ import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth, database } from '../firebaseConfig';
 import { setDoc, doc } from '@firebase/firestore';
 
+
 const UserSignUp = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     const [agreed, setAgreed] = useState(false);
+
 
     const createUser = (user, uid) => {
         setDoc(
@@ -17,7 +19,8 @@ const UserSignUp = () => {
                 "email": user.email,
                 "name": user.name,
                 "location": user.location,
-                "host": false
+                "host": false,
+                "queues": []
             }
         )
     }
@@ -37,7 +40,7 @@ const UserSignUp = () => {
         createUserWithEmailAndPassword(auth, user.email, user.password)
             .then((userCredential) => {
                 createUser(user, userCredential.user.uid);
-                navigate("/createQueue");
+                navigate("/userSelectPage");
             });
     }
 

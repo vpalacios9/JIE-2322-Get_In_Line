@@ -17,7 +17,7 @@ const UserSelectPage = () => {
     useEffect(() => {
       // Check if user is logged in and not a host
       if (!auth.currentUser || auth.currentUser.host) {
-        navigate('/login'); // Redirect to login if not logged in or is a host
+        navigate('/createQueue'); // Redirect to login if not logged in or is a host
         return;
       }
       const q = query(collection(database, "queue"));

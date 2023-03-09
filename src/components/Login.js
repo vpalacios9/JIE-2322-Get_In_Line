@@ -10,7 +10,7 @@ const Login = () => {
     const submit = (user) => {
         signInWithEmailAndPassword(auth, user.email, user.password)
             .then(() => {
-                navigate("/userSelectPage")
+                navigate("/createQueue")
             });
     }
 

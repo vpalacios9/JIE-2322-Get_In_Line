@@ -13,8 +13,7 @@ const HostCreateQueue = () => {
     host_id: user.uid
   });
   const collectionRef = collection(database, 'queue');
-  
-  const handleCreateQueue = (data) => {  
+  const handleCreateQueue = (data) => {
     addDoc(collectionRef, data)
     .then(() =>  {
       alert('Data added');
@@ -22,7 +21,6 @@ const HostCreateQueue = () => {
     .catch((err) => {
       alert(err.message);
     })
-    navigate("/HostDisplayUsers"); //TODO: TAKE THEM TO MY QUEUES. RIGHT NOW IT TAKES THEM TO THE ONE QUEUE DISPLAY
   }
 
     return (

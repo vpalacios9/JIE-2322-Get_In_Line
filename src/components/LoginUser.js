@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../firebaseConfig';
 
-const Login = () => {
+const LoginUser = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
 
     const submit = (user) => {
         signInWithEmailAndPassword(auth, user.email, user.password)
             .then(() => {
-                navigate("/createQueue")
+                navigate("/userSelectPage")
             });
     }
 
@@ -69,4 +69,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default LoginUser;

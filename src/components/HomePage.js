@@ -27,7 +27,8 @@ const HomePage = () => {
                                 <div class = "card-body">                                
                                     <div class="col-12">
                                     <div  class="text-center">
-                                        <button class="btn  btn-primary mr-5" onClick={() => navigate("/login")}>Login</button>
+                                        <button class="btn  btn-primary mr-5" onClick={() => navigate("/loginHost")}>Login as a Host</button>
+                                        <button class="btn  btn-primary mr-5" onClick={() => navigate("/loginUser")}>Login as a User</button>
                                         <br/>
                                         <br/>
                                         <button class ="btn btn-secondary mr-5" onClick={() => navigate("/adminsignup")}>Host Signup</button>

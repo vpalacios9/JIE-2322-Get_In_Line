@@ -36,6 +36,7 @@ const UserSelectPage = () => {
       if (id === undefined || id === null || id === "") {
         throw new Error("ID is not defined");
       }
+
       // Update the queue document with the user ID
       const queueDocRef = doc(database, "queue", id);
       await updateDoc(queueDocRef, {

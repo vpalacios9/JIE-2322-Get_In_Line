@@ -2,9 +2,11 @@ import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, database } from '../firebaseConfig';
 import { collection, getDocs, doc, updateDoc, query, arrayUnion } from '@firebase/firestore';
+import Navbar from './Navbar';
 
 const UserSelectPage = () => {
-    const [queueData, setQueueData] = useState({
+    
+  const [queueData, setQueueData] = useState({
       id: "",
       state: "",
       city: ""
@@ -13,6 +15,11 @@ const UserSelectPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+      // Check if user is logged in and not a host
+      if (!auth.currentUser || auth.currentUser.host) {
+        navigate('/createQueue'); // Redirect to login if not logged in or is a host
+        return;
+      }
       const q = query(collection(database, "queue"));
       getDocs(q).then(docs => {
         const queues = []
@@ -27,17 +34,27 @@ const UserSelectPage = () => {
 
     const addQueue = async (id) => {
       if (id === undefined || id === null || id === "") {
-        throw new Error("ID is not definted");
+        throw new Error("ID is not defined");
       }
-      const path = doc(database, "users", auth.currentUser.uid);
-      await updateDoc(path, {
+
+      // Update the queue document with the user ID
+      const queueDocRef = doc(database, "queue", id);
+      await updateDoc(queueDocRef, {
+        users: arrayUnion(auth.currentUser.uid)
+      });
+    
+      // Update the user document with the queue ID
+      const userDocRef = doc(database, "users", auth.currentUser.uid);
+      await updateDoc(userDocRef, {
         queues: arrayUnion(id)
-      }).then(() => {
-        navigate("/WaitTime")
-    });
+      });
+    
+      navigate("/WaitTime");
     }
 
     return (
+        <div>
+          <Navbar />
         <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
                 <div className="container card mt-4 p-4">
@@ -159,6 +176,7 @@ const UserSelectPage = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

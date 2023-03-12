@@ -9,7 +9,8 @@ const HostCreateQueue = () => {
   const navigate = useNavigate();
   if (!user) navigate("/login");
   const [queueData, setQueueData] = useState({
-    users: []
+    users: [],
+    host_id: user.uid
   });
   const collectionRef = collection(database, 'queue');
   const handleCreateQueue = (data) => {

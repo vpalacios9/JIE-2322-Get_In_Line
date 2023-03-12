@@ -104,7 +104,7 @@ const AdminSignUp  = () => {
                             <button type="submit" class="btn btn-primary" onClick={() => submit(user)}>Create Account</button>
                             <br/>
                             <br/>
-                            <button  class="btn btn-secondary" onClick={() => navigate("/login")}>Admin Login</button>
+                            <button  class="btn btn-secondary" onClick={() => navigate("/LoginHost")}>Admin Login</button>
                         </div>
                     </div>
                     </div>

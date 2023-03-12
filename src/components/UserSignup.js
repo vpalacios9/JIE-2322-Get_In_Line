@@ -104,7 +104,7 @@ const UserSignUp = () => {
                             <button type="submit" class="btn btn-primary" onClick={() => submit(user)}>Create Account</button>
                             <br/>
                             <br/>
-                            <button  class="btn btn-secondary" onClick={() => navigate("/login")}>User Login</button>
+                            <button  class="btn btn-secondary" onClick={() => navigate("/LoginUser")}>User Login</button>
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@ const LoginUser = () => {
             <div className= "row" >
                 <div className="container card mt-4 p-4">
                     <div className="text-center">
-                        <h4>Login</h4>
+                        <h4>Login as a User</h4>
                     </div>
                     <div className="text-left">
                         <div className="card-body">

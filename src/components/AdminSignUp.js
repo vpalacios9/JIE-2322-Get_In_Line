@@ -1,7 +1,6 @@
-import { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React, { useState} from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@firebase/auth';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth, database } from '../firebaseConfig';
 
 import { setDoc, doc } from '@firebase/firestore';
@@ -104,7 +103,7 @@ const AdminSignUp  = () => {
                             <button type="submit" class="btn btn-primary" onClick={() => submit(user)}>Create Account</button>
                             <br/>
                             <br/>
-                            <button  class="btn btn-secondary" onClick={() => navigate("/login")}>Admin Login</button>
+                            <button  class="btn btn-secondary" onClick={() => navigate("/LoginHost")}>Admin Login</button>
                         </div>
                     </div>
                     </div>

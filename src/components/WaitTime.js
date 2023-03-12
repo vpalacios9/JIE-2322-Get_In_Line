@@ -1,8 +1,10 @@
 import React, { useEffect, useState} from 'react'
 import { auth, database } from '../firebaseConfig';
 import { collection, query } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const WaitTime = () => {
+    const navigate = useNavigate();
     const user = auth.currentUser.id;
     const [currentQueue, setCurrentQueue] = useState('');
     const [queueData, setQueueData] = useState([]);
@@ -39,6 +41,9 @@ const WaitTime = () => {
                         <h5>Estimated Wait Time is:</h5>
                         <br></br>
                         <h5>Put ETA</h5>
+                        <br></br>
+                        <br></br>
+                        <button class="btn btn-primary" onClick={() => navigate("\MyQueues")}>My Queues</button>
                     </div>
                     </div>
                 </div>

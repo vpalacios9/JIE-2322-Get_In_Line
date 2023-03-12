@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import { collection, query, onSnapshot, where } from 'firebase/firestore';
+import { collection, query, onSnapshot, where, getDoc } from 'firebase/firestore';
 import { app, database, auth } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,17 +12,13 @@ const HostDisplayUsers = () => {
 
   // Check if user is logged in and is a host
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
-
     const usersRef = collection(database, 'users');
     // Query the user collection to check if the current user is a host
     const userQuery = query(usersRef,where('host', '==', true));
     const unsubscribe = onSnapshot(userQuery, (snapshot) => {
       // If the user is not a host, redirect to the homepage
       if (snapshot.docs.length === 0) {
+        alert("user not a host")
         navigate('/');
       }
     });
@@ -33,26 +29,30 @@ const HostDisplayUsers = () => {
     };
   }, [user, navigate]);
 
-  // Get the list of queues created by the host
   useEffect(() => {
     const queueRef = collection(database, 'queue');
-    // Query the queue collection to get the queues created by the current user
     const queueQuery = query(queueRef, where('host_id', '==', user.uid));
-
+  
     const unsubscribe = onSnapshot(queueQuery, (snapshot) => {
       const queueData = [];
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        queueData.push({ id: doc.id, ...doc.data() });
+      snapshot.forEach(async (doc) => {
+        const data = doc.data(); //Queue Data
+        const userIds = data.users;
+
+        queueData.push({
+          id: doc.id,
+          users: userIds,
+          ...data
+        });
       });
+
+      alert(JSON.stringify(queueData)); // Check if queueData contains the information
       setQueueData(queueData);
     });
-
-    // Unsubscribe from the queueQuery when the component unmounts
-    return () => {
-      unsubscribe();
-    };
-  }, [user]);
+  
+    return unsubscribe;
+  }, [database, user.uid]);
+  
 
   // Get the name of the current queue
   useEffect(() => {
@@ -74,12 +74,12 @@ const HostDisplayUsers = () => {
             </div>
             <div className="card-body">
               <div>
-                {queueData.map((data) => ( //DISPLAY USERS FOR QUEUE
-                  <div key={data.id}>
+              {queueData.map((queue) => (
+                  <div key={queue.id}>
                     <ul>
-                      {data.users.map((user) => (
-                        <li key={user.uid}>{user.displayName}</li>
-                      ))}
+                        {queue.users.map((userId) => (
+                        <li key={userId}>{userId}</li>
+                        ))}
                     </ul>
                   </div>
                 ))}

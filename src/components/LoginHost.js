@@ -11,7 +11,7 @@ const LoginHost = () => {
     const submit = (user) => {
         signInWithEmailAndPassword(auth, user.email, user.password)
             .then(() => {
-                navigate("/createQueue")
+                navigate("/hostDisplayUsers")
             })
             .catch(error => {
                 setError(error.message); // update error message

@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, database } from '../firebaseConfig';
-import { collection, getDocs, doc, updateDoc, query, arrayUnion } from '@firebase/firestore';
+import { collection, getDocs, doc, updateDoc, query, arrayUnion, getDoc } from '@firebase/firestore';
 import Navbar from './Navbar';
 
 const UserSelectPage = () => {
@@ -36,11 +36,17 @@ const UserSelectPage = () => {
       if (id === undefined || id === null || id === "") {
         throw new Error("ID is not defined");
       }
-      // Update the queue document with the user ID
-      const queueDocRef = doc(database, "queue", id);
+      // Retrieve the name of the current user from the Firestore 'users' collection
+      const userRef = doc(database, 'users', auth.currentUser.uid);
+      const userDoc = await getDoc(userRef);
+      const userName = userDoc.data().name;
+
+      // Update the 'queue' document in Firestore
+      const queueDocRef = doc(database, 'queue', id);
       await updateDoc(queueDocRef, {
-        users: arrayUnion(auth.currentUser.uid)
-      });
+      users: arrayUnion(auth.currentUser.uid),
+      userNames: arrayUnion(userName)
+    });
     
       // Update the user document with the queue ID
       const userDocRef = doc(database, "users", auth.currentUser.uid);

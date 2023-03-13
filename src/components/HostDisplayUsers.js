@@ -37,11 +37,11 @@ const HostDisplayUsers = () => {
       const queueData = [];
       snapshot.forEach(async (doc) => {
         const data = doc.data(); //Queue Data
-        const userIds = data.users;
-
+        const usersNames= data.userNames;
+        
         queueData.push({
           id: doc.id,
-          users: userIds,
+          users: usersNames,
           ...data
         });
       });
@@ -77,8 +77,8 @@ const HostDisplayUsers = () => {
               {queueData.map((queue) => (
                   <div key={queue.id}>
                     <ul>
-                        {queue.users.map((userId) => (
-                        <li key={userId}>{userId}</li>
+                        {queue.userNames.map((user) => (
+                        <li key={user}>{user}</li>
                         ))}
                     </ul>
                   </div>

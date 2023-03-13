@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, database } from '../firebaseConfig';
-import { collection, getDocs, doc, updateDoc, query, arrayUnion, getDoc } from '@firebase/firestore';
+import { collection, getDocs, doc, updateDoc, query, arrayUnion } from '@firebase/firestore';
 import Navbar from './Navbar';
 
 const UserSelectPage = () => {
@@ -17,7 +17,7 @@ const UserSelectPage = () => {
     useEffect(() => {
       // Check if user is logged in and not a host
       if (!auth.currentUser || auth.currentUser.host) {
-        navigate('/createQueue'); // Redirect to login if not logged in or is a host
+        navigate("/UserSignup"); // Redirect to login if not logged in or is a host
         return;
       }
       const q = query(collection(database, "queue"));
@@ -30,23 +30,18 @@ const UserSelectPage = () => {
         });
         setAllQueues([...queues]);
       });
-    }, []);
+    });
 
     const addQueue = async (id) => {
       if (id === undefined || id === null || id === "") {
         throw new Error("ID is not defined");
       }
-      // Retrieve the name of the current user from the Firestore 'users' collection
-      const userRef = doc(database, 'users', auth.currentUser.uid);
-      const userDoc = await getDoc(userRef);
-      const userName = userDoc.data().name;
 
-      // Update the 'queue' document in Firestore
-      const queueDocRef = doc(database, 'queue', id);
+      // Update the queue document with the user ID
+      const queueDocRef = doc(database, "queue", id);
       await updateDoc(queueDocRef, {
-      users: arrayUnion(auth.currentUser.uid),
-      userNames: arrayUnion(userName)
-    });
+        users: arrayUnion(auth.currentUser.uid)
+      });
     
       // Update the user document with the queue ID
       const userDocRef = doc(database, "users", auth.currentUser.uid);

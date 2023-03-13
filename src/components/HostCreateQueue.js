@@ -10,7 +10,6 @@ const HostCreateQueue = () => {
   if (!user) navigate("/login");
   const [queueData, setQueueData] = useState({
     users: [],
-    userNames: [],
     host_id: user.uid
   });
   const collectionRef = collection(database, 'queue');

@@ -21,7 +21,6 @@ const UserSignUp = () => {
                 "location": user.location,
                 "host": false,
                 "queues": []
-    
             }
         )
     }
@@ -44,7 +43,6 @@ const UserSignUp = () => {
                 navigate("/userSelectPage");
             });
     }
-    //TODO: add more clear labels for users 
 
     const onChange = (key, value) => {
         console.log(value)
@@ -65,8 +63,7 @@ const UserSignUp = () => {
                     <div className="card-body">
                         <div className="text-left">
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Enter Name</label>
-                                
+                                <label for="exampleFormControlInput1">Name</label>
                                 <input type="name" class="form-control" id="exampleFormControlInput1" onChange={(e) => onChange("name", e.target.value)} />
                             </div>
                             <div class="form-group">

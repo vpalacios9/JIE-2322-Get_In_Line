@@ -25,7 +25,7 @@ const LoginUser = () => {
             ...tmp
         })
     }
-
+//In the inputs I added a more helpful way for users to see what email they should use
     return (
         <div className="container bg-light  mt-4 p-4">
             <div className= "row" >
@@ -36,7 +36,8 @@ const LoginUser = () => {
                     <div className="text-left">
                         <div className="card-body">
                             <div className="form-group">
-                                <label for="exampleFormControlInput1">Email address</label>
+                                <label for="exampleFormControlInput1">email@email.com</label>
+                            
                                 <input
                                     type="email"
                                     className="form-control"

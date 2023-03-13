@@ -19,6 +19,7 @@ import WaitTime from "./components/WaitTime";
 import MyQueues from "./components/MyQueues";
 
 import HostDisplayUsers from "./components/HostDisplayUsers";
+import MyQueues from "./components/MyQueues";
 
 function App (props){
 
@@ -36,7 +37,7 @@ function App (props){
             <Route path="/waitTime" element={<WaitTime />}> </Route>
             <Route path="/hostDisplayUsers" element={<HostDisplayUsers/>}> </Route>
             <Route path="/myQueues" element={<MyQueues/>}></Route>
-            
+
           </Routes>
         </BrowserRouter>
       </div>

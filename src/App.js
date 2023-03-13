@@ -16,6 +16,8 @@ import LoginHost from './components/LoginHost';
 import UserSelectPage from './components/UserSelectPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import WaitTime from "./components/WaitTime";
+import MyQueues from "./components/MyQueues";
+
 import HostDisplayUsers from "./components/HostDisplayUsers";
 import MyQueues from "./components/MyQueues";
 
@@ -34,7 +36,8 @@ function App (props){
             <Route path="/userSelectPage" element={<UserSelectPage />}> </Route>
             <Route path="/waitTime" element={<WaitTime />}> </Route>
             <Route path="/hostDisplayUsers" element={<HostDisplayUsers/>}> </Route>
-            <Route path="/myQueues" element={<MyQueues/>}> </Route>
+            <Route path="/myQueues" element={<MyQueues/>}></Route>
+
           </Routes>
         </BrowserRouter>
       </div>

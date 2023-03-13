@@ -1,3 +1,4 @@
+
 import { Component } from "react";
 import {Button,  Row, Col} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,3 +26,4 @@ const HomePage = () => {
 }
 
 export default HomePage;
+

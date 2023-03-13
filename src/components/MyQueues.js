@@ -16,6 +16,9 @@ const HomePage = () => {
             <div className="row">
                 
             </div>
+            <div> 
+                <h1>My Queues</h1>
+            </div>
         </div>
         </div>
     )

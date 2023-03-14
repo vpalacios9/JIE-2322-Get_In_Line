@@ -14,7 +14,6 @@ This project is a webapage to solve the issue of waiting so long in line. People
 
 ### Known Issues 
 - No current issues that we are aware of. 
-# Release Notes
 ## Release 0.2.0 
 ### Features
 - Added new pages that the users can use to get in line, and implemented firebase backend additions so that the user is able to get added to firebase, and this was with regards to users queueing in line 

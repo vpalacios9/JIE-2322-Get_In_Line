@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap/lib/Tab";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
-const HomePage = () => {
+const MyQueues = () => {
     const navigate = useNavigate();
 
     return (
@@ -25,5 +25,5 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+export default MyQueues;
 

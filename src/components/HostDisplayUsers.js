@@ -44,7 +44,7 @@ const HostDisplayUsers = () => {
           users: userIds,
           ...data
         });
-      });
+      },[]);
 
       alert(JSON.stringify(queueData)); // Check if queueData contains the information
       setQueueData(queueData);

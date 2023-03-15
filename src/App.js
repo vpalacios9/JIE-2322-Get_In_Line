@@ -19,7 +19,6 @@ import WaitTime from "./components/WaitTime";
 import MyQueues from "./components/MyQueues";
 
 import HostDisplayUsers from "./components/HostDisplayUsers";
-import MyQueues from "./components/MyQueues";
 
 function App (props){
 

@@ -47,7 +47,7 @@ const Navbar = () => {
           <ul className="navbar-nav mr-auto">
             {isLoggedIn && (
               <li className="nav-item active mr-5">
-                <a className="nav-link" href="#" onClick={handleMyQueuesClick}>My Queues <span className="sr-only">(current)</span></a>
+                <a className="nav-link" href="#" onClick={() => navigate("/MyQueues")}>My Queues <span className="sr-only">(current)</span></a>
               </li>
             )}
             <li className="nav-item mr-5">

@@ -6,9 +6,9 @@ import { auth, database } from '../firebaseConfig';
 import { setDoc, doc } from '@firebase/firestore';
 
 
-const UserSignUp = () => {
+const UserSignUp = (props) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({}); //uuid
     const [agreed, setAgreed] = useState(false);
 
 
@@ -40,7 +40,7 @@ const UserSignUp = () => {
         createUserWithEmailAndPassword(auth, user.email, user.password)
             .then((userCredential) => {
                 createUser(user, userCredential.user.uid);
-                navigate("/userSelectPage");
+                navigate("/userSelectPage", {state: {user}});
             });
     }
 

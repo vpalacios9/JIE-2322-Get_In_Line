@@ -20,7 +20,6 @@ import MyQueues from "./components/MyQueues";
 
 import HostDisplayUsers from "./components/HostDisplayUsers";
 
-
 function App (props){
 
     return (

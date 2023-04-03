@@ -3,6 +3,16 @@
 This project is a webapage to solve the issue of waiting so long in line. People waste so much time waiting in line every single year, so this product helps to stop the issue. With this webpage, users are able to remotely queue themselves in a line, and then they can wait until they are notified they are number one in line, and can go to their service. 
 
 # Release Notes
+## Release 0.4.0 
+### Features
+- Users are now able to see all the queues they have joined by clicking on the My Queues tab on the Navigation Bar 
+- By clicking on one of the queues the user is in on the My Queues page, the user can then see the position they are in the queue and how long they have to wait in line
+
+### Bug Fixes 
+- Did not have any bugs in the previous code 
+
+### Known Issues 
+- Pages are not correctly linked to each other
 ## Release 0.3.0 
 ### Features
 - Users are now able to join multiple queues for different services. Hosts are also able to create multiple queues that users can join. Lastly, hosts are able to see all the users who joined their queue. 

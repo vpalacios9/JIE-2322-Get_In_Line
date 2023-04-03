@@ -13,6 +13,7 @@ const MyQueues = () => {
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
 
+
   useEffect(() => {
     if (currentUser) {
       const userDocRef = doc(database, "users", currentUser.uid);
@@ -46,8 +47,7 @@ const MyQueues = () => {
   }, [currentUser]);
   
   
-  
-
+ 
   if (!currentUser) {
     alert("user not logged in")
     navigate('/');
@@ -88,9 +88,7 @@ const MyQueues = () => {
       </div>
     </div>
   );
-  
-  
-  
 };
+
 
 export default MyQueues;

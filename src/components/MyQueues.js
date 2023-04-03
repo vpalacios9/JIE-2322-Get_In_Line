@@ -53,6 +53,10 @@ const MyQueues = () => {
     navigate('/');
   }
 
+  const handleClick = () => {
+    navigate('/WaitTime');
+  };
+
   return (
     <div>
       <Navbar />
@@ -67,12 +71,11 @@ const MyQueues = () => {
                 {queues.map((queue) => (
                   <div key={queue.id} className="mb-2"> {}
                     <Button
-                       
-                      className="btn btn-primary mr-3 w-100" 
-                      
+                      className="btn btn-primary mr-3 w-100"
+                      onClick={handleClick}
                     >
                       {queue.name}
-                    </Button>
+                    </Button >
                   </div>
                 ))}
               </div>

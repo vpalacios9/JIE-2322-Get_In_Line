@@ -25,26 +25,26 @@ import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 //firebase for jd-final-pres
-const firebaseConfig = {
-    apiKey: "AIzaSyA5fzaWEfvDBWRzhGRiAWOAAy-uxqu4VYA",
-    authDomain: "jd-final-pres.firebaseapp.com",
-    projectId: "jd-final-pres",
-    storageBucket: "jd-final-pres.appspot.com",
-    messagingSenderId: "944855405450",
-    appId: "1:944855405450:web:34707d711c8c09450a2e73",
-    measurementId: "G-SZDQC1V4H3"
-  };
+// const firebaseConfig = {
+//     apiKey: "AIzaSyA5fzaWEfvDBWRzhGRiAWOAAy-uxqu4VYA",
+//     authDomain: "jd-final-pres.firebaseapp.com",
+//     projectId: "jd-final-pres",
+//     storageBucket: "jd-final-pres.appspot.com",
+//     messagingSenderId: "944855405450",
+//     appId: "1:944855405450:web:34707d711c8c09450a2e73",
+//     measurementId: "G-SZDQC1V4H3"
+//   };
 
 // //firebase for get-in-line-2
-// const firebaseConfig = {
-//   apiKey: "AIzaSyC5l5TPB1Wucp2z-pH-p0SiXRNl2QW94J0",
-//   authDomain: "get-in-line-9c2b8.firebaseapp.com",
-//   projectId: "get-in-line-9c2b8",
-//   storageBucket: "get-in-line-9c2b8.appspot.com",
-//   messagingSenderId: "791828127592",
-//   appId: "1:791828127592:web:055ac75549671a8ee040dd",
-//   measurementId: "G-7MW33LKH81"
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyC5l5TPB1Wucp2z-pH-p0SiXRNl2QW94J0",
+  authDomain: "get-in-line-9c2b8.firebaseapp.com",
+  projectId: "get-in-line-9c2b8",
+  storageBucket: "get-in-line-9c2b8.appspot.com",
+  messagingSenderId: "791828127592",
+  appId: "1:791828127592:web:055ac75549671a8ee040dd",
+  measurementId: "G-7MW33LKH81"
+};
   
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

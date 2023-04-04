@@ -82,7 +82,7 @@ const MyQueues = () => {
               <br />
               <br />
               <br />
-              <button type="button" className="btn btn-danger mr-3">
+              <button type="button" className="btn btn-danger mr-3" onClick={() => navigate("/UserSelectPage")} >
                 Add New Event
               </button>
             </div>

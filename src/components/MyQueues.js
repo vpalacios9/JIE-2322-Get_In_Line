@@ -13,6 +13,7 @@ const MyQueues = () => {
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
 
+
   useEffect(() => {
     if (currentUser) {
       const userDocRef = doc(database, "users", currentUser.uid);
@@ -46,12 +47,15 @@ const MyQueues = () => {
   }, [currentUser]);
   
   
-  
-
+ 
   if (!currentUser) {
     alert("user not logged in")
     navigate('/');
   }
+
+  const handleClick = () => {
+    navigate('/WaitTime');
+  };
 
   return (
     <div>
@@ -67,12 +71,11 @@ const MyQueues = () => {
                 {queues.map((queue) => (
                   <div key={queue.id} className="mb-2"> {}
                     <Button
-                       
-                      className="btn btn-primary mr-3 w-100" 
-                      
+                      className="btn btn-primary mr-3 w-100"
+                      onClick={handleClick}
                     >
                       {queue.name}
-                    </Button>
+                    </Button >
                   </div>
                 ))}
               </div>
@@ -88,9 +91,7 @@ const MyQueues = () => {
       </div>
     </div>
   );
-  
-  
-  
 };
+
 
 export default MyQueues;

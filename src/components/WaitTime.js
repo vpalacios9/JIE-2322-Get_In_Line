@@ -45,7 +45,7 @@ const WaitTime = () => {
 
         })
         
-    }, [userWaitSpot, currentQueueName]);
+    }, [userWaitSpot, currentQueueName, user.uid, currentQueueID]);
 
 
     return (

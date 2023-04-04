@@ -79,10 +79,15 @@ const HostDisplayUsers = () => {
                     <ul>
                         {queue.users.map((userId) => (
                         <li key={userId}>{userId}</li>
+                        
                         ))}
+
                     </ul>
+                    
                   </div>
                 ))}
+
+
               </div>
               <button type="button" className="btn btn-secondary mr-5">
                 Back

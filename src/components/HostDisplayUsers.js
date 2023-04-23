@@ -77,12 +77,17 @@ const HostDisplayUsers = () => {
               {queueData.map((queue) => (
                   <div key={queue.id}>
                     <ul>
+
                         {queue.userNames.map((user) => (
                         <li key={user}>{user}</li>
                         ))}
+
                     </ul>
+                    
                   </div>
                 ))}
+
+
               </div>
               <button type="button" className="btn btn-secondary mr-5">
                 Back

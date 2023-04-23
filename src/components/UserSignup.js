@@ -8,10 +8,11 @@ import { setDoc, doc } from '@firebase/firestore';
 
 const UserSignUp = (props) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState({}); //uuid
-    const [agreed, setAgreed] = useState(false);
+    const [user, setUser] = useState({}); //Initialize user state as empty
+    const [agreed, setAgreed] = useState(false); //Initialize terms and conditions as false
 
 
+    //Function to create user in Firestore
     const createUser = (user, uid) => {
         setDoc(
             doc(database, 'users', uid),
@@ -25,6 +26,7 @@ const UserSignUp = (props) => {
         )
     }
     
+    //Function to submit the form and create new user
     const submit = (user) => {
         if (!user.email || user.email === ""
             || !user.name || user.name === ""
@@ -37,13 +39,14 @@ const UserSignUp = (props) => {
         if (!agreed) {
             throw new Error("Please read and agree with Terms and Condition to continue creating your account")
         }
+        //Create User in Firebase Authentication
         createUserWithEmailAndPassword(auth, user.email, user.password)
             .then((userCredential) => {
                 createUser(user, userCredential.user.uid);
                 navigate("/userSelectPage", {state: {user}});
             });
     }
-
+    //Function to update the user state when a form field is changed
     const onChange = (key, value) => {
         console.log(value)
         let tmp = {...user};

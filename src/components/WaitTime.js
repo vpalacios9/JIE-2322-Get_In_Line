@@ -13,8 +13,9 @@ const WaitTime = () => {
     const [currentQueueETW, setCurrentQueueETW] = useState(1);
     
  
-
+    // Fetch data from the Firebase database
     useEffect(() => {
+        // Query 'users' collection to get the current user's queue ID
         const q = query(collection(database, "users"));
         const result = getDocs(q).then((e) => {
             e.forEach((doc) => {
@@ -23,6 +24,7 @@ const WaitTime = () => {
                 }
             })
         })
+        // Query the 'queue' collection to get the current queue's data
         const q2 = query(collection(database, "queue"));
         const result2 = getDocs(q2).then((e) =>{
             e.forEach((doc) => {
@@ -30,6 +32,7 @@ const WaitTime = () => {
 
                     const curQueue = doc.data();
 
+                    // Set state variables based on the current user's position in the queue
                     setCurrentQueueName(curQueue.name);
                     
                     //if the user.uid = the user in the "users" queue

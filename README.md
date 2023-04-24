@@ -1,7 +1,27 @@
 # PROJECT: GetInLine
-## COMPANY: GetInLine Inc. 
+### Client: GetInLine Inc.
+### Created by: Alex Jaegook Kim, Valeria Palacios, Arhum Khan
 
-#Description: GetInLine is a web application designed to solve the problem of having to spend long waits in line. The concern of "how much longer do I have to wait?" is resolved through GetInLine.  With GetInLine, users are able to digitally queue themselves into a line from a service that a host has created within the app. Users are able to see their position in queue and get a rought estimated wait time before their turn. <br />
+# Description: 
+GetInLine is a web application designed to solve the problem of having to spend long waits in line. The concern of "how much longer do I have to wait?" is resolved through GetInLine.  With GetInLine, users are able to digitally queue themselves into a line from a service that a host has created within the app. Users are able to see their position in queue and get a rought estimated wait time before their turn. <br />
+
+# Table of Contents
+## [Features](#features)
+## Getting Started
+### Prerequisites
+### Installation
+## [Release Notes](#release-notes)
+## Usage
+## Contributions
+## License
+## Contact
+
+# Features
+The app is divided into host and user, where each have their distinct features.
+## Host
+* Create multiple events
+* See the users in line for their events
+
 
 # Release Notes
 ## Release 0.4.0 

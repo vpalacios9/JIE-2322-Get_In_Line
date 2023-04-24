@@ -131,6 +131,8 @@ Features that can be added to in continuation for the project
 * Add/remove users from wait list on host side
 * "MyEvents" page for hosts
     * Hosts see all the events they have created
+* Have a "time to get there" where users know how long it will take to get to the event
+* Push notification for users to know 5 minutes before their turn
 
 # License
 

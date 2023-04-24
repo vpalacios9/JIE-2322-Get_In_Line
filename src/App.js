@@ -9,31 +9,38 @@ import {
 //Components
 import HostCreateQueue from './components/HostCreateQueue';
 import HomePage from "./components/HomePage";
-import Navbar from './components/Navbar';
-import UserLogin from './components/UserLogin';
 import UserSignUp from './components/UserSignup';
 import AdminSignUp from './components/AdminSignUp';
-import AdminLogin from './components/AdminLogin';
+import LoginUser from './components/LoginUser';
+import LoginHost from './components/LoginHost';
+import UserSelectPage from './components/UserSelectPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import WaitTime from "./components/WaitTime";
+import MyQueues from "./components/MyQueues";
 
-class App extends Component {
-  render() {
+import HostDisplayUsers from "./components/HostDisplayUsers";
+
+function App (props){
+
     return (
       <div className="App">
-     <BrowserRouter>
-        <Routes>
-        <Route path="/" element={<HostCreateQueue />}> </Route>
-        <Route path="/userSignup" element={<UserSignUp />}> </Route>
-        <Route path="/userLogin" element={<UserLogin />}> </Route>
-        <Route path="/adminSignup" element={<AdminSignUp />}> </Route>
-        <Route path="/adminLogin" element={<AdminLogin />}> </Route>
-        <Route path="/createQueue" element={<HostCreateQueue />}> </Route>
-        <Route path="/homePage" element={<HomePage />}> </Route>
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />}> </Route>
+            <Route path="/userSignup" element={<UserSignUp />}> </Route>
+            <Route path="/adminSignup" element={<AdminSignUp />}> </Route>
+            <Route path="/loginUser" element={<LoginUser />}> </Route>
+            <Route path="/loginHost" element={<LoginHost />}> </Route>
+            <Route path="/createQueue" element={<HostCreateQueue />}> </Route>
+            <Route path="/userSelectPage" element={<UserSelectPage />}> </Route>
+            <Route path="/waitTime" element={<WaitTime />}> </Route>
+            <Route path="/hostDisplayUsers" element={<HostDisplayUsers/>}> </Route>
+            <Route path="/myQueues" element={<MyQueues/>}></Route>
 
-    </div>
+          </Routes>
+        </BrowserRouter>
+      </div>
     );
-  }
 }
+
 export default App;

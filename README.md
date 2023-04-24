@@ -27,6 +27,17 @@ The app is divided into host and user, where each have their distinct features.
 * See all the queues they are in through "MyQueues" Page
 * Get an estimated wait time and their position in queue
 
+
+# Getting Started
+## Prerequisites
+Before installing and running GetInLine, please ensure that you have the following prerequisites installed on your system:
+* Microsoft Visual Studio Code Text Editor. [Download here](https://code.visualstudio.com/download)
+* Node.js version 14 or higher. [Download here](https://nodejs.org/en/download)
+* Node Package Manager (NPM) [Download here](https://changelog.com/posts/install-node-js-with-homebrew-on-os-x)
+* Git [Download here](https://github.com/git-guides/install-git)
+
+
+
 # Release Notes
 ## Release 0.4.0 
 ### Features

@@ -43,6 +43,25 @@ Before installing and running GetInLine, please ensure that you have the followi
 
 You should have the code running on the local host at this point.
 
+## Q&A for Installation
+* Dependent libraries that must be installed: what third party software must be
+installed for your software to function?
+The dependencies that must be installed foe the software to function are:
+    *	Node.js – needed to manage dependencies 
+    *	React – the library used to build the software
+    *	React-DOM – needed so that components can be rendered in the browser
+    *	React-Router – help with routing for the project 
+    *	Firebase – help with the backend for the project 
+    *	Bootstrap – used for styling the projects UI 
+    *	Material-UI – allows using CSS within the JS 
+* Download instructions: how will the customer and users get access to the project?
+To get access to the project, go on to the GitHub repository. From there clone the project and install it to local drive. 
+* Installation of actual application: what steps have to be taken after the software is
+built? What directories are required for installation?
+* Run instructions: Make sure that all dependencies are downloaded, and type the “npm start” command into the terminal to run the web application 
+* Troubleshooting: what are common errors that occur during installation and what
+is the corrective action?
+Some common errors include not being in the right directory. Make sure after downloading the project and opeming it, you are in the correct directory. Another common error is the software not running because npm is not installed. Make sure npm is installed so that the react app can be run. 
 
 # Release Notes
 ## Release 0.4.0 

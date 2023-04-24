@@ -7,14 +7,14 @@ GetInLine is a web application designed to solve the problem of having to spend 
 
 # Table of Contents
 ### [Features](#features)
-### [Getting Started](#)
-#### [Prerequisites](#)
-#### [Installation](#)
+### [Getting Started](#getting_started)
+#### [Prerequisites](#prerequisites)
+#### [Installation](#installation)
 ### [Release Notes](#release-notes)
-### [Usage](#)
-### [Contributions](#)
-### [License](#)
-### [Contact](#)
+### [Usage](#usage)
+### [Contributions](#contributions)
+### [License](#license)
+### [Contact](#contact)
 
 # Features
 The app is divided into host and user, where each have their distinct features.

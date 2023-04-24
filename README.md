@@ -1,7 +1,7 @@
 # PROJECT: GetInLine
-# COMPANY: GetInLine Inc. 
+## COMPANY: GetInLine Inc. 
 
-This project is a webapage to solve the issue of waiting so long in line. People waste so much time waiting in line every single year, so this product helps to stop the issue. With this webpage, users are able to remotely queue themselves in a line, and then they can wait until they are notified they are number one in line, and can go to their service. 
+#Description: GetInLine is a web application designed to solve the problem of having to spend long waits in line. The concern of "how much longer do I have to wait?" is resolved through GetInLine.  With GetInLine, users are able to digitally queue themselves into a line from a service that a host has created within the app. Users are able to see their position in queue and get a rought estimated wait time before their turn. <br />
 
 # Release Notes
 ## Release 0.4.0 

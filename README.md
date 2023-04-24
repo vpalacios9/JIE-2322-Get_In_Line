@@ -125,3 +125,14 @@ Users can signup to use the application so they can start queuing themselves in 
 Users can search for a specific event they want to queue into. To do so, they simply need to search for the location with the state and city, and based on the location, a list of events will pop up. The user can select the appropriate one, and from here they can queue themselves into line. Users are able to queue into multiple queues
 ## Seeing queues: 
 Users can navigate to the "MyQueues" page to see all the queues they have signed up to be in. From here they can click on a specific event, and this will show them the wait time and position they have in queue. 
+
+# Contributions
+Features that can be added to in continuation for the project
+* Add/remove users from wait list on host side
+* "MyEvents" page for hosts
+    * Hosts see all the events they have created
+
+# Contact
+Alex Jaegook Kim (alex.jg.kim@gatech.edu) <br>
+Valeria Palacios (vpalacios9@gatech.edu) <br>
+Arhum Khan (akhan425@gatech.edu)

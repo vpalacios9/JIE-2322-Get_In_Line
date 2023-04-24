@@ -6,15 +6,15 @@
 GetInLine is a web application designed to solve the problem of having to spend long waits in line. The concern of "how much longer do I have to wait?" is resolved through GetInLine.  With GetInLine, users are able to digitally queue themselves into a line from a service that a host has created within the app. Users are able to see their position in queue and get a rought estimated wait time before their turn. <br />
 
 # Table of Contents
-### [Features](#features)
-### [Getting Started](#getting-started)
-#### [Prerequisites](#prerequisites)
-#### [Installation](#installation)
-### [Release Notes](#release-notes)
-### [Usage](#usage)
-### [Contributions](#contributions)
-### [License](#license)
-### [Contact](#contact)
+### [1. Features](#features)
+### [2. Getting Started](#getting-started)
+#### [2.a Prerequisites](#prerequisites)
+#### [2.b Installation](#installation)
+### [3. Release Notes](#release-notes)
+### [4. Usage](#usage)
+### [5. Contributions](#contributions)
+### [6. License](#license)
+### [7. Contact](#contact)
 
 # Features
 The app is divided into host and user, where each have their distinct features.

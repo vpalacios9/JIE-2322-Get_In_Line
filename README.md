@@ -132,6 +132,13 @@ Features that can be added to in continuation for the project
 * "MyEvents" page for hosts
     * Hosts see all the events they have created
 
+# License
+
+This project is licensed under the MIT License
+
+The MIT License is a permissive open source license that allows users to use, copy, modify, and distribute the code without many restrictions, as long as they include a copy of the license in their own project and give credit to the original authors. Other licenses may have different requirements or restrictions, so it's important to choose the license that best suits your project and its goals.
+
+
 # Contact
 Alex Jaegook Kim (alex.jg.kim@gatech.edu) <br>
 Valeria Palacios (vpalacios9@gatech.edu) <br>

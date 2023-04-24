@@ -36,6 +36,12 @@ Before installing and running GetInLine, please ensure that you have the followi
 * Node Package Manager (NPM). [Download here](https://changelog.com/posts/install-node-js-with-homebrew-on-os-x)
 * Git. [Download here](https://github.com/git-guides/install-git)
 
+# Installation
+### `npm build`
+### `npm install`
+### `npm start`
+
+You should have the code running on the local host at this point.
 
 
 # Release Notes

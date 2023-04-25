@@ -30,25 +30,25 @@ const MyQueues = () => {
       };
     } 
   }, [currentUser]); 
-  if (!currentUser) {
-    alert("user not logged in")
-    navigate('/');
+  if (!currentUser) { // if current user is not logged in, then it will exexute this statement 
+    alert("user not logged in") //will make an alert saying user is not logged in
+    navigate('/'); /// navigates back to homepage 
   }
-  const handleClick = () => {
-    navigate('/WaitTime');
+  const handleClick = () => { //constant to store an action a user might do 
+    navigate('/WaitTime'); //navigates back to the wait time page 
   };
-  return (
+  return ( //html code to display contents 
     <div>
-      <Navbar />
-      <div className="container bg-light mt-4 p-4">
-        <div className="row">
-          <div className="container card mt-4 p-4">
-            <div className="text-center">
-              <h2>My Queues</h2>
-            </div>
-            <div className="card-body">
+      <Navbar />   {/**Navbar component to display at the top of the page */}
+      <div className="container bg-light mt-4 p-4"> {/**Creates a container wiht a light background */}
+        <div className="row"> {/**Row class to help with grid layout */}
+          <div className="container card mt-4 p-4"> {/**Create a card container with padding */}
+            <div className="text-center"> {/**Centers text content that is inside it*/}
+              <h2>My Queues</h2> {/**Writes My Queues at top of page */}
+            </div> {/**Closes text center*/}
+            <div className="card-body"> {/**creates card body */}
               <div>
-                {queues.map((queue) => (
+                {queues.map((queue) => ( 
                   <div key={queue.id} className="mb-2"> {}
                     <Button
                       className="btn btn-primary mr-3 w-100"
@@ -57,14 +57,16 @@ const MyQueues = () => {
                       {queue.name}
                     </Button >
                   </div>
-                ))}
+                ))} {/**maps through queues array and then makes a new div element for the qeueus with queue.id as a key.  Creates a button 
+                 * with theh same functionality as listed in react 
+                */}
               </div>
               <br />
               <br />
               <br />
               <button type="button" className="btn btn-danger mr-3" onClick={() => navigate("/UserSelectPage")} >
                 Add New Event
-              </button>
+              </button> {/**Creates a new button that is red and goes back to user select page */}
             </div>
           </div>
         </div>
